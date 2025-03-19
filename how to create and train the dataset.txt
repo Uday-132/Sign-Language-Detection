@@ -1,0 +1,35 @@
+how to create and train the dataset -- object detection
+1...     git clone https://github.com/ultralytics/yolov5
+    cd yolov5
+2...     pip install -r requirements.txt
+3...     dataset/
+    ├── images/
+    │   ├── train/
+    │   │   ├── image1.jpg
+    │   │   ├── image2.jpg
+    │   │   └── ...
+    │   └── val/
+    │       ├── image3.jpg
+    │       ├── image4.jpg
+    │       └── ...
+    └── labels/
+        ├── train/
+        │   ├── image1.txt
+        │   ├── image2.txt
+        │   └── ...
+        └── val/
+            ├── image3.txt
+            ├── image4.txt
+            └── ...
+4...     <class_id> <x_center> <y_center> <width> <height> the formT IF THE Labeled text file
+5... data.yaml
+    train: /path/to/dataset/images/train  # path to training images
+    val: /path/to/dataset/images/val    # path to validation images
+    nc: 2  # number of classes
+    names: ['class1', 'class2']  # class names
+6... Train the dataset
+    python train.py --data data.yaml --weights yolov5s.pt --epochs 100 --batch-size 16
+7... Evaluate the model
+    python train.py --data data.yaml --weights yolov5s.pt --epochs 100 --batch-size 16
+8... Detect the model
+    python detect.py --weights runs/train/exp/weights/best.pt --source path/to/image_or_video
